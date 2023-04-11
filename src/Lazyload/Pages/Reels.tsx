@@ -3,3 +3,5 @@ export const Reels = () => {
     <div>Reels</div>
   )
 }
+
+export default Reels

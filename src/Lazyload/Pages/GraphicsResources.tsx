@@ -3,3 +3,5 @@ export const GraphicsResources = () => {
     <div>GraphicsResources</div>
   )
 }
+
+export default GraphicsResources
