@@ -3,6 +3,8 @@ import { Routes, Route, NavLink, Navigate } from 'react-router-dom';
 
 import logo from '../Assets/Logo.png';
 
+import { About, GraphicsResources, Home, Reels } from '../Lazyload/Pages';
+
 export const Navigation = () => {
 	return (
 		<BrowserRouter>
@@ -45,7 +47,7 @@ export const Navigation = () => {
 						</li>
 						<li>
 							<NavLink
-								to='/Recursos'
+								to='/recursos'
 								className={({ isActive }) =>
 									isActive ? 'nav-active' : ''
 								}
@@ -58,20 +60,20 @@ export const Navigation = () => {
 
 				<Routes>
 					<Route
-						path='/'
-						element={<h1>Reels</h1>}
+						path='/reels'
+						element={<Reels />}
+					/>
+					<Route
+						path='/nosotros'
+						element={<About />}
+					/>
+					<Route
+						path='/recursos'
+						element={<GraphicsResources />}
 					/>
 					<Route
 						path='/'
-						element={<h1>About us</h1>}
-					/>
-					<Route
-						path='/'
-						element={<h1>GraphicResources</h1>}
-					/>
-					<Route
-						path='/'
-						element={<h1>Home</h1>}
+						element={<Home />}
 					/>
 					<Route
 						path='/*'
