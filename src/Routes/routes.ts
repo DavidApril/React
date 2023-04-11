@@ -1,5 +1,6 @@
-import { Component, lazy, LazyExoticComponent } from "react";
-// import { Home, GraphicsResources, About, Reels } from "../Lazyload/Pages";
+import { lazy, LazyExoticComponent } from "react";
+import { DashBoard } from "../Lazyload/Layout/DashBoard";
+import {GraphicsResources, About, Contact} from "../Lazyload/Pages";
 
 type JSXComponent = () => JSX.Element;
 
@@ -10,34 +11,40 @@ interface Route{
   name: string
 }
 
-const Home = lazy(() => import('../Lazyload/Pages/Home'));
-const Reels = lazy(() => import('../Lazyload/Pages/Reels'));
-const About = lazy(() => import('../Lazyload/Pages/About'));
-const GraphicsResources = lazy(() => import('../Lazyload/Pages/GraphicsResources'));
+// const About = lazy(() => import('../Lazyload/Pages/About'));
+// const GraphicsResources = lazy(() => import('../Lazyload/Pages/GraphicsResources'));
+
+const Reels = lazy(() => import('../Lazyload/Pages/Reels')); // Lazy
 
 export const routes: Route[] = [
   {
-    to: '/',
-    path: '/',
-    Component: Home,
+    to: '/inicio', 
+    path: 'inicio',
+    Component: DashBoard,
     name: 'Inicio'
   },
   {
     to: '/reels',
-    path: '/reels',
+    path: '/reels/*',
     Component: Reels,
     name: 'Reels'
   },
-  {
+    {
     to: '/nosotros',
-    path: '/nosotros',
+    path: 'nosotros',
     Component: About,
     name: 'Nosotros'
   },
   {
     to: '/recursos',
-    path: '/recursos',
+    path: 'recursos',
     Component: GraphicsResources,
     name: 'Recursos gráficos'
   },
+  {
+    to: '/contacto',
+    path: 'contacto',
+    Component: Contact,
+    name: 'Contáctanos',
+  }
 ]

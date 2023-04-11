@@ -8,8 +8,8 @@ import logo from '../Assets/Logo.png';
 
 export const Navigation = () => {
 	return (
-
-		<Suspense fallback={null}> {/* Replace null for loader component !!! */}
+		<Suspense fallback={null}>
+			{/* Replace null for loader component !!! */}
 			<BrowserRouter>
 				<div className='main-layout'>
 					<nav>

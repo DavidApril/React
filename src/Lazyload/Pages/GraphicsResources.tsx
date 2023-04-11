@@ -1,7 +1,5 @@
 export const GraphicsResources = () => {
-  return (
-    <div>GraphicsResources</div>
-  )
-}
+	return <div>GraphicsResources</div>;
+};
 
-export default GraphicsResources
+export default GraphicsResources;
