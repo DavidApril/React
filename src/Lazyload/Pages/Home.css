@@ -1,0 +1,37 @@
+.gifs-section-container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
+
+.gifs-container {
+  display: flex;
+  flex-flow: nowrap;
+  transition: all 0.3s all;
+  width: 100vw;
+}
+
+
+/* .controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  position: absolute;
+}
+
+.controls img {
+  margin: 24px;
+  max-width: 50px;
+  background-color: #000000b6;
+  transition: all 0.2s ease;
+  top: 0;
+  backdrop-filter: blur(2rem);
+}
+
+.controls img:hover {
+  background-color: #dd4745;
+} */
+

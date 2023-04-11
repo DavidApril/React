@@ -1,32 +1,44 @@
-import { Component, Suspense } from 'react';
+import { Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Routes, Route, NavLink, Navigate } from 'react-router-dom';
 
+import './Navigation.css';
+
 import { routes } from './routes';
 import logo from '../Assets/Logo.png';
+import menuPoints from '../Assets/menu-points-h.png';
+import { Loader } from '../Lazyload/Components/Loader';
 // import { About, GraphicsResources, Home, Reels } from '../Lazyload/Pages';
 
 export const Navigation = () => {
 	return (
-		<Suspense fallback={null}>
-			{/* Replace null for loader component !!! */}
+		<Suspense fallback={<Loader />}>
 			<BrowserRouter>
 				<div className='main-layout'>
 					<nav>
 						<img
+							className='logo'
 							src={logo}
 							alt='Logo de Alerón producciones'
 						/>
-						<ul>
+						<ul className='nav-menu'>
 							{routes.map(({ to, name }) => (
 								<li key={to}>
 									<NavLink
 										to={to}
 										className={({ isActive }) =>
-											isActive ? 'nav-active' : ''
+											isActive ? 'nav-active' : 'nav-link'
 										}
 									>
-										{name}
+										{name}{' '}
+										{name === 'Reels' ? (
+											<img
+												src={menuPoints}
+												className='menu-btn'
+											/>
+										) : (
+											''
+										)}
 									</NavLink>
 								</li>
 							))}

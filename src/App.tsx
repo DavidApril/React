@@ -1,5 +1,7 @@
 import { Navigation } from './Routes/Navigation';
 
+import './App.css'
+
 function App() {
 	return (
 		<>
