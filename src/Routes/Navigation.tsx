@@ -1,7 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import { Routes, Route, NavLink, Navigate } from 'react-router-dom';
 
-import logo from '../Assets/Logo.png';
+import logo from '../../public/logo192.png';
 
 export const Navigation = () => {
 	return (
@@ -10,47 +10,37 @@ export const Navigation = () => {
 				<nav>
 					<img
 						src={logo}
-						alt='Logo de Alerón producciones'
+						alt='React Logo'
 					/>
 					<ul>
 						<li>
 							<NavLink
-								to='/'
+								to='/home'
 								className={({ isActive }) =>
 									isActive ? 'nav-active' : ''
 								}
 							>
-								Inicio
+								Home
 							</NavLink>
 						</li>
 						<li>
 							<NavLink
-								to='/reels'
+								to='/about'
 								className={({ isActive }) =>
 									isActive ? 'nav-active' : ''
 								}
 							>
-								Reels
+								About
 							</NavLink>
 						</li>
 						<li>
 							<NavLink
-								to='/nosotros'
+								to='/users'
 								className={({ isActive }) =>
 									isActive ? 'nav-active' : ''
 								}
 							>
-								Nosotros
-							</NavLink>
-						</li>
-						<li>
-							<NavLink
-								to='/Recursos'
-								className={({ isActive }) =>
-									isActive ? 'nav-active' : ''
-								}
-							>
-								Recursos gráficos
+								Users
 							</NavLink>
 						</li>
 					</ul>
@@ -58,21 +48,18 @@ export const Navigation = () => {
 
 				<Routes>
 					<Route
-						path='/'
-						element={<h1>Reels</h1>}
+						path='about'
+						element={<h1>About Page</h1>}
 					/>
 					<Route
-						path='/'
-						element={<h1>About us</h1>}
+						path='users'
+						element={<h1>Users Page</h1>}
 					/>
 					<Route
-						path='/'
-						element={<h1>GraphicResources</h1>}
+						path='home'
+						element={<h1>Home Page</h1>}
 					/>
-					<Route
-						path='/'
-						element={<h1>Home</h1>}
-					/>
+
 					<Route
 						path='/*'
 						element={
