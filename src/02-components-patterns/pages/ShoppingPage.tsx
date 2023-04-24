@@ -1,25 +1,12 @@
-import { useState } from 'react';
 import { ProductButtons, ProductCard, ProductImage, ProductTitle } from '../components';
-import { Product } from '../interfaces/interface';
-
+import { useShoppingCart } from '../hooks/useShoppingCart';
+import { products } from '../data/Products';
 import '../styles/custom-style.css';
-
-const product1 = {
-	id: '1',
-	title: 'Coffee Mug - type1',
-	img: './coffee-mug.png',
-};
-
-const product2 = {
-	id: '2',
-	title: 'Coffee Mug - type2',
-	img: './coffee-mug2.png',
-};
-
-const products: Product[] = [product1, product2];
 
 export const ShoppingPage = () => {
 	
+	const { onProductCountChange, shoppingCart } = useShoppingCart();
+
 	return (
 		<div>
 			<h1>Shopping Store</h1>
@@ -34,6 +21,8 @@ export const ShoppingPage = () => {
 					<ProductCard
 						key={product.id}
 						product={product}
+						onChange={onProductCountChange}
+						value={shoppingCart[product.id]?.count || 0}
 						className='bg-dark text-white'>
 						<ProductImage className='custom-image' />
 						<ProductTitle />
@@ -42,9 +31,13 @@ export const ShoppingPage = () => {
 				))}
 			</div>
 			<div className='shopping-cart'>
+				{Object.entries(shoppingCart).map(([key, product]) => (
 					<ProductCard
-						product={product1}
+						key={key}
+						product={product}
 						className='bg-dark text-white'
+						onChange={onProductCountChange}
+						value={product.count}
 						style={{ width: '100px' }}>
 						<ProductImage className='custom-image' />
 						<ProductButtons
@@ -55,6 +48,7 @@ export const ShoppingPage = () => {
 							}}
 						/>
 					</ProductCard>
+				))}
 			</div>
 		</div>
 	);
