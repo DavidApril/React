@@ -18,30 +18,8 @@ const product2 = {
 
 const products: Product[] = [product1, product2];
 
-interface ProductInCart extends Product {
-	count: number;
-}
-
 export const ShoppingPage = () => {
-	const [shoppingCart, setShoppingCart] = useState<{
-		[key: string]: ProductInCart;
-	}>({});
-
-	const onProductHandleChange = ({ count, product }: { count: number; product: Product }) => {
-		setShoppingCart((oldShoppingCart) => {
-			if (count === 0) {
-				const { [product.id]: toDelete, ...rest } = oldShoppingCart;
-
-				return rest;
-			}
-
-			return {
-				...oldShoppingCart,
-				[product.id]: { ...product, count },
-			};
-		});
-	};
-
+	
 	return (
 		<div>
 			<h1>Shopping Store</h1>
@@ -56,9 +34,7 @@ export const ShoppingPage = () => {
 					<ProductCard
 						key={product.id}
 						product={product}
-						className='bg-dark text-white'
-						onChange={onProductHandleChange}
-						value={shoppingCart[product.id]?.count || 0}>
+						className='bg-dark text-white'>
 						<ProductImage className='custom-image' />
 						<ProductTitle />
 						<ProductButtons className='custom-button' />
@@ -66,14 +42,10 @@ export const ShoppingPage = () => {
 				))}
 			</div>
 			<div className='shopping-cart'>
-				{Object.entries(shoppingCart).map(([key, product]) => (
 					<ProductCard
-						key={key}
-						product={product}
+						product={product1}
 						className='bg-dark text-white'
-						style={{ width: '100px' }}
-						onChange={onProductHandleChange}
-						value={product.count}>
+						style={{ width: '100px' }}>
 						<ProductImage className='custom-image' />
 						<ProductButtons
 							className='custom-button'
@@ -83,11 +55,6 @@ export const ShoppingPage = () => {
 							}}
 						/>
 					</ProductCard>
-				))}
-			</div>
-
-			<div>
-				<code>{JSON.stringify(shoppingCart, null, 5)}</code>
 			</div>
 		</div>
 	);
