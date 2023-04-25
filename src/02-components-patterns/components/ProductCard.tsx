@@ -1,33 +1,46 @@
 import { createContext } from 'react';
 import styles from '../styles/styles.module.css';
 import { useProduct } from '../hooks/useProduct';
-import { ProductContextProps, Product, onChangeArgs } from '../interfaces/interface';
+import { ProductContextProps, Product, onChangeArgs, InitialValues, productCardHandlers } from '../interfaces/interface';
 
 export const ProductContext = createContext({} as ProductContextProps);
 const { Provider } = ProductContext;
 
 export interface Props {
+	value?: number;
 	product: Product;
-	children?: React.ReactElement | React.ReactElement[];
 	className?: string;
 	style?: React.CSSProperties;
+	children: (Args: productCardHandlers) => JSX.Element;
+	initialValues?: InitialValues;
 	onChange?: (Args: onChangeArgs) => void;
-	value?: number;
+	// children?: React.ReactElement | React.ReactElement[];
 }
 
-export const ProductCard = ({ children, product, className, style, onChange, value }: Props) => {
-	const { counter, increaseBy } = useProduct({ onChange, product, value });
+export const ProductCard = ({ children, product, className, style, onChange, value, initialValues }: Props) => {
+	
+	const { counter, increaseBy, isMaxCountReached, reset} = useProduct({ onChange, product, value, initialValues });
+
 	return (
 		<Provider
 			value={{
 				counter,
 				increaseBy,
 				product,
+				maxCount: initialValues?.maxCount,
 			}}>
 			<div
 				className={`${styles.productCard} ${className} ${style}`}
 				style={style}>
-				{children}
+				{children({
+					count: counter,
+					isMaxCountReached,
+					maxCount: initialValues?.maxCount,
+					product,
+
+					increaseBy,
+					reset,
+				})}
 			</div>
 		</Provider>
 	);
